@@ -33,7 +33,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
                 print(error.localizedDescription)
             } else if let data = data,
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                print(dataDictionary)
+//                print(dataDictionary)
                 
                 // Get the posts and store in posts property
                 let responseDictionary = dataDictionary["response"] as! [String: Any]
@@ -48,7 +48,6 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 10
         // Generate a tableView containing all the posts
         return posts.count
     }
@@ -65,6 +64,8 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
             let originalSize = photo["original_size"] as! [String: Any]
             let urlString = originalSize["url"] as! String
             let url = URL(string: urlString)
+//            print(url!, indexPath.row)
+//            print(type(of: url!))
             cell.photoImageView.af_setImage(withURL: url!)
         }
         
