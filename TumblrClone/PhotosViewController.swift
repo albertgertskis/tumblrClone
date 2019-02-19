@@ -11,15 +11,13 @@ import AlamofireImage
 
 class PhotosViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var posts: [[String: Any]] = []
-
     @IBOutlet weak var tableView: UITableView!
+    var posts: [[String: Any]] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 250
@@ -33,7 +31,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
                 print(error.localizedDescription)
             } else if let data = data,
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-//                print(dataDictionary)
+                print(dataDictionary)
                 
                 // Get the posts and store in posts property
                 let responseDictionary = dataDictionary["response"] as! [String: Any]
@@ -58,14 +56,11 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         
         
         if let photos = post["photos"] as? [[String: Any]] {
-            // If photos is NOT nil, we can use it
-            // Get the url of each photo
+            // If photos is NOT nil, we can get the URL of each photo
             let photo = photos[0]
             let originalSize = photo["original_size"] as! [String: Any]
             let urlString = originalSize["url"] as! String
             let url = URL(string: urlString)
-//            print(url!, indexPath.row)
-//            print(type(of: url!))
             cell.photoImageView.af_setImage(withURL: url!)
         }
         
