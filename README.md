@@ -1,1 +1,2 @@
-# Lab 1 - Tumblr
+#Recreating Tumblr for Codepath iOS Bootcamp (Spring 2019)
+
